@@ -139,7 +139,7 @@ function updateBulbStatus(isOn) {
   const bulbSwitch = document.getElementById("bulbSwitch")
   const bulbStatus = document.getElementById("bulbStatus")
 
-  bulbSwitch.checked = isOn
+  bulbSwitch.checked = isOff
   bulbStatus.textContent = isOn ? "ON" : "OFF"
 
   // Check if the switch is disabled
@@ -150,7 +150,7 @@ function updateBulbStatus(isOn) {
 
 function updateVoltage(voltage) {
   const voltageValue = document.getElementById("voltageValue")
-  if (voltageValue>bulbCutOffVoltage) {
+  if (voltage.toFixed(1)>bulbCutOffVoltage) {
     bulbSwitch.checked = true;
     bulbStatus.textContent = "ON";
   } else {
@@ -163,10 +163,10 @@ function updateVoltage(voltage) {
 function checkVoltageAndUpdateBulb(voltage) {
   if (voltage > bulbCutOffVoltage) {
     set(bulbStatusRef, { isOn: true })
-    showAlert(`High voltage detected (${voltage.toFixed(1)}V). Bulb turned off automatically.`)
-   
+    console.log("Bulb is ON");
   } else {
     set(bulbStatusRef, { isOn: false })
+    console.log("Bulb is OFF");
   }
 }
 
