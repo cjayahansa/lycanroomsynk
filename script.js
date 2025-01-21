@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"
-import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js"
+import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js"
 
 const firebaseConfig = {
   apiKey: "AIzaSyBvl_7QAJjE3nsT3GTfaNsA61pfSUHjDaw",
@@ -16,6 +16,7 @@ const app = initializeApp(firebaseConfig)
 const database = getDatabase(app)
 
 const sensorDataRef = ref(database, "sensorData")
+const bulbStatusRef = ref(database, "bulbStatus")
 
 let temperatureMin = Number.POSITIVE_INFINITY
 let temperatureMax = Number.NEGATIVE_INFINITY
@@ -28,8 +29,19 @@ onValue(sensorDataRef, (snapshot) => {
     updateLightIntensity(data.lux)
     updateHumidity(data.humidity)
     updateThermometer(data.temperature)
+    updateVoltage(data.voltage)
+    checkVoltageAndUpdateBulb(data.voltage)
   } else {
     console.log("No data found in 'sensorData'.")
+  }
+})
+
+onValue(bulbStatusRef, (snapshot) => {
+  if (snapshot.exists()) {
+    const bulbStatus = snapshot.val()
+    updateBulbStatus(bulbStatus.isOn)
+  } else {
+    console.log("No data found in 'bulbStatus'.")
   }
 })
 
@@ -120,10 +132,69 @@ function updateLightIntensity(lux) {
   }
 }
 
-// Remove the initial update calls since we're now using real-time data
-// document.addEventListener("DOMContentLoaded", () => {
-//   updateThermometer(25);
-//   updateHumidity(45);
-//   updateLightIntensity(500);
-// });
+function updateBulbStatus(isOn) {
+  const bulbSwitch = document.getElementById("bulbSwitch")
+  const bulbStatus = document.getElementById("bulbStatus")
+
+  bulbSwitch.checked = isOn
+  bulbStatus.textContent = isOn ? "ON" : "OFF"
+
+  // Check if the switch is disabled
+  if (!bulbSwitch.disabled) {
+    bulbSwitch.parentElement.style.opacity = "1"
+  }
+}
+
+function updateVoltage(voltage) {
+  const voltageValue = document.getElementById("voltageValue")
+  voltageValue.textContent = voltage.toFixed(1)
+}
+
+function checkVoltageAndUpdateBulb(voltage) {
+  if (voltage > 100) {
+    set(bulbStatusRef, { isOn: false })
+    showAlert(`High voltage detected (${voltage.toFixed(1)}V). Bulb turned off automatically.`)
+    disableBulbSwitch(true)
+  } else {
+    disableBulbSwitch(false)
+  }
+}
+
+function showAlert(message) {
+  const alertElement = document.createElement("div")
+  alertElement.className = "alert alert-danger alert-dismissible fade show"
+  alertElement.role = "alert"
+  alertElement.innerHTML = `
+    ${message}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  `
+  document.body.insertBefore(alertElement, document.body.firstChild)
+
+  // Auto-dismiss after 5 seconds
+  setTimeout(() => {
+    alertElement.remove()
+  }, 5000)
+}
+
+function disableBulbSwitch(disable) {
+  const bulbSwitch = document.getElementById("bulbSwitch")
+  bulbSwitch.disabled = disable
+  bulbSwitch.parentElement.style.opacity = disable ? "0.5" : "1"
+}
+
+document.getElementById("bulbSwitch").addEventListener("change", (event) => {
+  const isOn = event.target.checked
+
+  // Only update if the switch is not disabled
+  if (!event.target.disabled) {
+    set(bulbStatusRef, {
+      isOn: isOn,
+    })
+  }
+})
+
+document.addEventListener("DOMContentLoaded", () => {
+  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+  var tooltipList = tooltipTriggerList.map((tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl))
+})
 

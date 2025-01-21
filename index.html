@@ -69,6 +69,16 @@
                         <div class="light-intensity-bar">
                             <div class="light-intensity-fill"></div>
                         </div>
+                        <div class="bulb-control">
+                            <label class="switch" data-bs-toggle="tooltip" data-bs-placement="top" title="Switch disabled due to high voltage">
+                                <input type="checkbox" id="bulbSwitch">
+                                <span class="slider round"></span>
+                            </label>
+                            <span class="bulb-label">Bulb: <span id="bulbStatus">OFF</span></span>
+                        </div>
+                        <div class="voltage-display">
+                            Voltage: <span id="voltageValue">0.0</span>V
+                        </div>
                         <button class="glow-button">Details</button>
                     </div>
                 </div>

@@ -177,6 +177,83 @@
     transition: width 0.5s ease;
   }
   
+  /* Bulb Control */
+  .bulb-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+  
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    margin-right: 10px;
+  }
+  
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--bg-secondary);
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: var(--text-primary);
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: var(--accent-primary);
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(26px);
+  }
+  
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+  
+  .bulb-label {
+    color: var(--text-secondary);
+  }
+  
+  /* Voltage Display */
+  .voltage-display {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+  }
+  
+  #voltageValue {
+    color: var(--accent-primary);
+    font-weight: bold;
+  }
+  
   /* Buttons */
   .button-group {
     display: flex;
@@ -230,6 +307,16 @@
     .glow-button {
       width: 100%;
     }
+  }
+  
+  .alert {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    min-width: 300px;
+    text-align: center;
   }
   
   
