@@ -1,5 +1,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"
 import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js"
+const bulbSwitch = document.getElementById("bulbSwitch");
+const bulbStatus = document.getElementById("bulbStatus");
+const bulbCutOffVoltage = 100;
 
 const firebaseConfig = {
   apiKey: "AIzaSyBvl_7QAJjE3nsT3GTfaNsA61pfSUHjDaw",
@@ -147,16 +150,23 @@ function updateBulbStatus(isOn) {
 
 function updateVoltage(voltage) {
   const voltageValue = document.getElementById("voltageValue")
+  if (voltageValue>bulbCutOffVoltage) {
+    bulbSwitch.checked = true;
+    bulbStatus.textContent = "ON";
+  } else {
+    bulbSwitch.checked = false;
+    bulbStatus.textContent = "OFF";
+  }
   voltageValue.textContent = voltage.toFixed(1)
 }
 
 function checkVoltageAndUpdateBulb(voltage) {
-  if (voltage > 100) {
-    set(bulbStatusRef, { isOn: false })
+  if (voltage > bulbCutOffVoltage) {
+    set(bulbStatusRef, { isOn: true })
     showAlert(`High voltage detected (${voltage.toFixed(1)}V). Bulb turned off automatically.`)
-    disableBulbSwitch(true)
+   
   } else {
-    disableBulbSwitch(false)
+    set(bulbStatusRef, { isOn: false })
   }
 }
 
@@ -197,4 +207,7 @@ document.addEventListener("DOMContentLoaded", () => {
   var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
   var tooltipList = tooltipTriggerList.map((tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl))
 })
+
+
+
 
