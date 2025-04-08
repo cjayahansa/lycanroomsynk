@@ -200,7 +200,7 @@ document.getElementById("bulbSwitch").addEventListener("change", (event) => {
         set(bulbStatusRef, {
             isOn: isOn,
         });
-    }
+     }
 });
 
 document.addEventListener("DOMContentLoaded", () => {
