@@ -21,7 +21,7 @@ const database = getDatabase(app);
 const sensorDataRef = ref(database, "sensorData");
 const bulbStatusRef = ref(database, "bulbStatus");
 
-let temperatureMin = Number.POSITIVE_INFINITY;
+ let temperatureMin = Number.POSITIVE_INFINITY;
 let temperatureMax = Number.NEGATIVE_INFINITY;
 let humidityMin = Number.POSITIVE_INFINITY;
 let humidityMax = Number.NEGATIVE_INFINITY;
