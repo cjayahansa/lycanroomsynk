@@ -1,7 +1,5 @@
 
 # 📌 LycanRoomSync
-
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)  
 [![Contributors](https://img.shields.io/badge/contributors-1-green.svg)](CONTRIBUTORS.md)  
 [![Last Commit](https://img.shields.io/github/last-commit/yourusername/LycanRoomSync)](https://github.com/yourusername/LycanRoomSync)
 
