@@ -141,8 +141,8 @@ Please ensure your code follows best practices and includes appropriate document
 
 For questions, feedback, or collaboration, feel free to reach out:
 
-- **Your Name**: [Your Email](chaminduliyangama1761@gmail.com)
-- **GitHub Profile**: [Your Profile](https://github.com/cjayahansa)
-- **Project Link**: [LycanRoomSync Repository](https://cjayahansa.github.io/lycanroomsynk/)
+(chaminduliyangama1761@gmail.com).
+(https://github.com/cjayahansa).
+(https://cjayahansa.github.io/lycanroomsynk/).
 
 
