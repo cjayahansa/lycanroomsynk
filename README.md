@@ -47,7 +47,7 @@ Before setting up the project, ensure you have the following installed:
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/yourusername/LycanRoomSync.git
+   git clone https://github.com/cjayahansa/LycanRoomSync.git
    cd LycanRoomSync
    ```
 
@@ -128,12 +128,6 @@ Contributions are welcome! Here’s how you can help:
 5. Open a pull request.
 
 Please ensure your code follows best practices and includes appropriate documentation.
-
----
-
-## 📄 License
-
-This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
 
 ---
 
