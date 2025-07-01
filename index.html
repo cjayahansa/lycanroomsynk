@@ -26,93 +26,55 @@
             </div>
         </header>
 
-        <div class="datetime-container">
-          <span id="currentDate"></span>
-          <span id="currentTime"></span>
-        </div>
-
         <section class="sensor-dashboard py-5">
-        <!-- Real-Time Power Monitoring -->
-         <!-- Real-Time Power Monitoring + Bill Estimate -->
-  <div class="container mb-5">
-    <div class="row g-4">
-      <!-- Real-Time Power Monitoring -->
-      <div class="col-md-6">
-        <section class="power-container h-100">
-          <h2>Real-Time Power Monitoring</h2>
-          <div class="power-readings">
-            <p>Voltage: <span id="voltage">--</span> V</p>
-            <p>Current: <span id="current">--</span> A</p>
-            <p><strong>Power:</strong> <span id="power">--</span> W</p>
-          </div>
-        </section>
-      </div>
-
-      <!-- Monthly Bill Estimate -->
-      <div class="col-md-6">
-        <section class="bill-container h-100">
-          <h2>Estimated Monthly Electricity Bill</h2>
-          <div class="bill-details">
-            <p>Monthly Units: <span id="monthlyUnits">--</span> kWh</p>
-            <p>Estimated Bill: Rs. <span id="estimatedBill">--</span></p>
-          </div>
-        </section>
-      </div>
-    </div>
-  </div>
-        
             <div class="container">
-              <div class="row g-4 justify-content-center">
-                <!-- Temperature Card -->
-                <div class="col-md-4">
-                  <div class="sensor-card">
-                    <h3>Temperature</h3>
-                    <div class="meter-container">
-                      <div class="thermometer">
-                        <div class="mercury" style="height: 60%;"></div>
-                        <div class="temperature-label" id="temperature">--°C</div>
-                      </div>
+                <div class="row g-4 justify-content-center">
+                    <!-- Temperature Card -->
+                    <div class="col-md-4">
+                        <div class="sensor-card">
+                            <h3>Temperature</h3>
+                            <div class="meter-container">
+                                <div class="thermometer">
+                                    <div class="mercury" id="temperature-meter"></div>
+                                    <div class="temperature-label" id="temperature">--°C</div>
+                                </div>
+                            </div>
+                            <div class="sensor-details">
+                                <p>Current: <span id="temperatureCurrent">--°C</span></p>
+                                <p>
+                                    Min: <span id="temperatureMin">--°C</span> | Max:
+                                    <span id="temperatureMax">--°C</span>
+                                </p>
+                            </div>
+                            <button class="glow-button" onclick="location.href='temprature.html'">Details</button>
+                        </div>
                     </div>
-                    <div class="sensor-details">
-                      <p>Current: <span id="temperatureCurrent">--°C</span></p>
-                      <p>
-                        Min: <span id="temperatureMin">--°C</span> | Max:
-                        <span id="temperatureMax">--°C</span>
-                      </p>
+
+                    <!-- Humidity Card -->
+                    <div class="col-md-4">
+                        <div class="sensor-card">
+                            <h3>Humidity</h3>
+                            <div class="meter-container">
+                                <div class="humiditymeter">
+                                    <div class="mercury" id="humidity-meter"></div>
+                                    <div class="temperature-label" id="humidity">--%</div>
+                                </div>
+                            </div>
+                            <div class="sensor-details">
+                                <p>Current: <span id="humidityCurrent">--%</span></p>
+                                <p>
+                                    Min: <span id="humidityMin">--%</span> | Max:
+                                    <span id="humidityMax">--%</span>
+                                </p>
+                            </div>
+                            <button class="glow-button" onclick="location.href='humidity.html'">Details</button>
+                        </div>
                     </div>
-                    <button class="glow-button" onclick="location.href='temprature.html'">Details</button>
-                  </div>
-                </div>
-        
-                <!-- Humidity Card -->
-                <div class="col-md-4">
-                  <div class="sensor-card">
-                    <h3>Humidity</h3>
-                    <div class="meter-container">
-                      <div class="humiditymeter">
-                        <div class="mercury" style="height: 40%;"></div>
-                        <div class="temperature-label" id="humidity">--%</div>
-                      </div>
-                    </div>
-                    <div class="sensor-details">
-                      <p>Current: <span id="humidityCurrent">--%</span></p>
-                      <p>
-                        Min: <span id="humidityMin">--%</span> | Max:
-                        <span id="humidityMax">--%</span>
-                      </p>
-                    </div>
-                    <button class="glow-button" onclick="location.href='humidity.html'">Details</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-                    <!-- Light Intensity Card -->
                 </div>
             </div>
         </section>
 
-        <!-- Monthly Power Consumption Chart -->
+        <!-- Power and Chart Sections -->
         <section class="chart-container my-5">
             <h2>Monthly Power Consumption (kWh)</h2>
             <div class="canvas-wrapper">
@@ -120,23 +82,89 @@
             </div>
         </section>
 
+        <section class="power-container my-5">
+            <h2>Real-Time Power Monitoring</h2>
+            <div class="power-readings">
+                <p>Voltage: <span id="voltage">--</span> V</p>
+                <p>Current: <span id="current">--</span> A</p>
+                <p><strong>Power:</strong> <span id="power">--</span> W</p>
+            </div>
+        </section>
 
+        <section class="bill-container my-5">
+            <h2>Estimated Monthly Electricity Bill</h2>
+            <div class="bill-details">
+                <p>Monthly Units: <span id="monthlyUnits">--</span> kWh</p>
+                <p>Estimated Bill: Rs. <span id="estimatedBill">--</span></p>
+            </div>
+        </section>
 
-        <!-- Control Panel -->
         <section class="control-panel py-4">
             <div class="container text-center">
                 <button class="glow-button secondary" onclick="location.href='index2.html'">About System</button>
             </div>
         </section>
+
+        <!-- Custom Scripts -->
         <script src="script4.js" defer></script>
-        <!-- Scripts -->
         <script src="script2.js" defer></script>
-        <!-- for power data -->
         <script src="script3.js" defer></script>
-        <!-- for chart data -->
-        <script src="script5.js" defer></script>
         <script type="module" src="script.js"></script>
-        <!-- main sensor logic -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Firebase Integration -->
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
+        <script>
+            const firebaseConfig = {
+                apiKey: "AIzaSyDo3eZIkYaMOoT1cVp5Il6CHsxIIb5xQ_0",
+                authDomain: "flutterfirebase-dc911.firebaseapp.com",
+                databaseURL: "https://flutterfirebase-dc911-default-rtdb.asia-southeast1.firebasedatabase.app",
+                projectId: "flutterfirebase-dc911",
+                storageBucket: "flutterfirebase-dc911.appspot.com",
+                //messagingSenderId: "YOUR_SENDER_ID",
+                // appId: "YOUR_APP_ID"
+            };
+
+            firebase.initializeApp(firebaseConfig);
+
+            firebase
+            .auth()
+            .signInWithEmailAndPassword("riththikkansairam@gmail.com", "roomsync")
+            .then(() => {
+                const temperatureRef = firebase.database().ref("Sensor/Temperature");
+                temperatureRef.on("value", (snapshot) => {
+                    const data = snapshot.val();
+                    if (data) {
+                        document.getElementById("temperatureCurrent").innerText = data.current + "°C";
+                        document.getElementById("temperatureMin").innerText = data.min + "°C";
+                        document.getElementById("temperatureMax").innerText = data.max + "°C";
+                        document.querySelector(".thermometer .mercury").style.height = (data.current / 50) * 100 + "%";
+                        document.getElementById("temperature").innerText = data.current + "°C";
+                    }
+                });
+
+                const humidityRef = firebase.database().ref("Sensor/Humidity");
+                humidityRef.on("value", (snapshot) => {
+                    const data = snapshot.val();
+                    if (data) {
+                        document.getElementById("humidityCurrent").innerText = data.current + "%";
+                        document.getElementById("humidityMin").innerText = data.min + "%";
+                        document.getElementById("humidityMax").innerText = data.max + "%";
+                        document.querySelector(".humiditymeter .mercury").style.height = data.current + "%";
+                        document.getElementById("humidity").innerText = data.current + "%";
+                    }
+                });
+            })
+            .catch((error) => {
+                console.error("Firebase Auth error:", error.message);
+            });
+        </script>
     </body>
 </html>
