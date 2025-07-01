@@ -26,7 +26,41 @@
             </div>
         </header>
 
+        <div class="datetime-container">
+          <span id="currentDate"></span>
+          <span id="currentTime"></span>
+        </div>
+
         <section class="sensor-dashboard py-5">
+        <!-- Real-Time Power Monitoring -->
+         <!-- Real-Time Power Monitoring + Bill Estimate -->
+  <div class="container mb-5">
+    <div class="row g-4">
+      <!-- Real-Time Power Monitoring -->
+      <div class="col-md-6">
+        <section class="power-container h-100">
+          <h2>Real-Time Power Monitoring</h2>
+          <div class="power-readings">
+            <p>Voltage: <span id="voltage">--</span> V</p>
+            <p>Current: <span id="current">--</span> A</p>
+            <p><strong>Power:</strong> <span id="power">--</span> W</p>
+          </div>
+        </section>
+      </div>
+
+      <!-- Monthly Bill Estimate -->
+      <div class="col-md-6">
+        <section class="bill-container h-100">
+          <h2>Estimated Monthly Electricity Bill</h2>
+          <div class="bill-details">
+            <p>Monthly Units: <span id="monthlyUnits">--</span> kWh</p>
+            <p>Estimated Bill: Rs. <span id="estimatedBill">--</span></p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+        
             <div class="container">
               <div class="row g-4 justify-content-center">
                 <!-- Temperature Card -->
@@ -86,24 +120,7 @@
             </div>
         </section>
 
-        <!-- Real-Time Power Monitoring -->
-        <section class="power-container my-5">
-            <h2>Real-Time Power Monitoring</h2>
-            <div class="power-readings">
-                <p>Voltage: <span id="voltage">--</span> V</p>
-                <p>Current: <span id="current">--</span> A</p>
-                <p><strong>Power:</strong> <span id="power">--</span> W</p>
-            </div>
-        </section>
 
-        <!-- Monthly Bill Estimate -->
-        <section class="bill-container my-5">
-            <h2>Estimated Monthly Electricity Bill</h2>
-            <div class="bill-details">
-                <p>Monthly Units: <span id="monthlyUnits">--</span> kWh</p>
-                <p>Estimated Bill: Rs. <span id="estimatedBill">--</span></p>
-            </div>
-        </section>
 
         <!-- Control Panel -->
         <section class="control-panel py-4">
@@ -117,6 +134,7 @@
         <!-- for power data -->
         <script src="script3.js" defer></script>
         <!-- for chart data -->
+        <script src="script5.js" defer></script>
         <script type="module" src="script.js"></script>
         <!-- main sensor logic -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

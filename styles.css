@@ -1,33 +1,67 @@
 :root {
-    --bg-primary: #121212;
-    --bg-secondary: #1e1e1e;
+    /* Enhanced Color Palette */
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #1a1a1a;
+    --bg-tertiary: #2a2a2a;
     --text-primary: #ffffff;
-    --text-secondary: #a0a0a0;
-    --accent-primary: #00a8ff;
-    --accent-secondary: #0097e6;
-    --card-bg: #1a1a1a;
-    --success-color: #4cd137;
-    --warning-color: #fbc531;
-    --danger-color: #e84118;
+    --text-secondary: #b0b0b0;
+    --text-muted: #808080;
+
+    /* Accent Colors */
+    --accent-primary: #00d4ff;
+    --accent-secondary: #0099cc;
+    --accent-gradient: linear-gradient(135deg, #00d4ff, #0099cc);
+
+    /* Status Colors */
+    --success-color: #00ff88;
+    --warning-color: #ffaa00;
+    --danger-color: #ff4757;
+    --info-color: #74b9ff;
+
+    /* Card & Glass Effects */
+    --card-bg: rgba(26, 26, 26, 0.85);
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+
+    /* Shadows */
+    --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 8px 25px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 15px 35px rgba(0, 0, 0, 0.5);
+    --shadow-glow: 0 0 20px rgba(0, 212, 255, 0.3);
+
+    /* Border Radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --radius-xl: 24px;
 }
 
 /* Base Styles */
-body.dark-theme {
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
-    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+* {
     margin: 0;
-    min-height: 100vh;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Header Styles */
+body.dark-theme {
+    background: linear-gradient(135deg, var(--bg-primary) 0%, #1a1a2e 50%, var(--bg-primary) 100%);
+    background-attachment: fixed;
+    color: var(--text-primary);
+    font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Enhanced Header */
 .header-section {
     position: relative;
-    height: 40vh;
+    height: 50vh;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
+    background: linear-gradient(45deg, #0a0a0a, #1a1a2e);
 }
 
 .video-overlay {
@@ -36,7 +70,7 @@ body.dark-theme {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9));
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 212, 255, 0.1) 50%, rgba(0, 0, 0, 0.9) 100%);
     z-index: 1;
 }
 
@@ -46,266 +80,604 @@ body.dark-theme {
     height: 100%;
     object-fit: cover;
     z-index: 0;
+    filter: brightness(0.7) contrast(1.2);
 }
 
 .header-content {
     position: relative;
     z-index: 2;
     text-align: center;
+    animation: fadeInUp 1s ease-out;
 }
 
 .header-content h1 {
-    font-size: 2.5rem;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
     margin-bottom: 1rem;
-    text-shadow: 0 0 10px rgba(0, 168, 255, 0.5);
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+    letter-spacing: 2px;
 }
 
 .header-subtitle {
     color: var(--text-secondary);
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    font-weight: 300;
+    letter-spacing: 1px;
 }
 
-/* Sensor Dashboard */
+/* Enhanced DateTime Display */
+.datetime-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    padding: 15px 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    z-index: 1000;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+}
+
+.datetime-container:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.datetime-container span {
+    display: block;
+    text-align: center;
+}
+
+.datetime-container span:first-child {
+    color: var(--accent-primary);
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+/* Enhanced Sensor Dashboard */
 .sensor-dashboard {
-    padding: 2rem 0;
+    padding: 4rem 0;
+    background: linear-gradient(180deg, transparent 0%, rgba(0, 212, 255, 0.02) 100%);
 }
 
 .sensor-card {
-    background: var(--card-bg);
-    border-radius: 15px;
-    padding: 1.5rem;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-xl);
+    padding: 2rem;
+    box-shadow: var(--shadow-md);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+}
+
+.sensor-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--accent-gradient);
+    transform: scaleX(0);
     transition: transform 0.3s ease;
 }
 
+.sensor-card:hover::before {
+    transform: scaleX(1);
+}
+
 .sensor-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: var(--shadow-lg), var(--shadow-glow);
+    border-color: rgba(0, 212, 255, 0.3);
 }
 
 .sensor-card h3 {
     color: var(--accent-primary);
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     text-align: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 1px;
 }
 
-/* Meters */
+/* Enhanced Meters */
 .meter-container {
     display: flex;
     justify-content: center;
-    margin: 1rem 0;
+    margin: 2rem 0;
+    position: relative;
 }
 
 .thermometer,
 .humiditymeter {
     position: relative;
-    width: 40px;
-    height: 200px;
-    background: var(--bg-secondary);
-    border-radius: 20px;
+    width: 50px;
+    height: 220px;
+    background: var(--bg-tertiary);
+    border-radius: 25px;
     overflow: hidden;
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+    border: 2px solid var(--glass-border);
 }
 
 .mercury {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 50%;
-    background: linear-gradient(to top, var(--accent-primary), var(--accent-secondary));
-    transition: height 0.5s ease, background 0.3s ease;
-    box-shadow: 0 0 10px var(--accent-primary);
+    background: var(--accent-gradient);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
+    animation: pulse 2s infinite;
 }
 
 .temperature-label {
     position: absolute;
-    bottom: -30px;
+    bottom: -40px;
     width: 100%;
     text-align: center;
     color: var(--text-primary);
-    font-weight: bold;
+    font-weight: 700;
+    font-size: 1.1rem;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius-sm);
+    padding: 5px;
+    border: 1px solid var(--glass-border);
 }
 
-/* Sensor Details */
+/* Enhanced Sensor Details */
 .sensor-details {
-    margin-top: 1rem;
+    margin-top: 2rem;
     text-align: center;
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: var(--text-secondary);
+    background: var(--glass-bg);
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    border: 1px solid var(--glass-border);
 }
 
 .sensor-details p {
-    margin: 0.5rem 0;
+    margin: 0.8rem 0;
+    transition: color 0.3s ease;
 }
 
 .sensor-details span {
     color: var(--accent-primary);
-    font-weight: bold;
-}
-.glow-button {
-    display: block;
-    margin: 1rem auto 0;
-    padding: 0.5rem 1.5rem;
-    background: var(--accent-primary);
-    border: none;
-    border-radius: 10px;
-    color: #fff;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 0 10px var(--accent-primary);
-    transition: 0.3s ease;
-}
-
-.glow-button:hover {
-    background: var(--accent-secondary);
-    box-shadow: 0 0 20px var(--accent-secondary);
-}
-
-/* Light Intensity Display */
-
-/* dashbord */
-/* Container for chart */
-.chart-container {
-    background-color: #121212; /* Slightly lighter black for less harshness */
-    color: #e0e0e0; /* Softer white */
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    padding: 30px 40px;
-    max-width: 1000px;
-    margin: 40px auto;
-    border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(13, 110, 253, 0.3);
-    transition: box-shadow 0.3s ease;
-}
-
-.chart-container:hover {
-    box-shadow: 0 12px 36px rgba(13, 110, 253, 0.6);
-}
-
-.chart-container h2 {
-    text-align: center;
-    margin-bottom: 30px;
     font-weight: 700;
-    font-size: 2rem;
-    letter-spacing: 1px;
-    color: #0d6efd;
+    font-size: 1.1rem;
 }
 
-/* Canvas wrapper - controls size */
-.canvas-wrapper {
-    width: 100%;
-    height: 500px; /* You can adjust this */
-    border-radius: 10px;
-    overflow: hidden;
-    background-color: #1e1e1e; /* subtle background for chart */
-    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.05);
-}
-
-/* Force canvas to fill the wrapper */
-canvas {
-    width: 100% !important;
-    height: 100% !important;
-    display: block; /* remove inline block space */
-}
-
-/* Power container */
+/* Enhanced Power Container */
 .power-container {
-    background: linear-gradient(135deg, #0f0f0f, #1c1c1c);
-    color: #f0f0f0;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    padding: 50px 60px;
-    border-radius: 20px;
-    box-shadow: 0 16px 50px rgba(0, 123, 255, 0.25);
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
+    padding: 2.5rem;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
     text-align: center;
-    max-width: 520px;
-    margin: 70px auto;
-    transition: all 0.4s ease-in-out;
-    backdrop-filter: blur(6px);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+}
+
+.power-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--success-color), var(--info-color), var(--warning-color));
 }
 
 .power-container:hover {
-    transform: scale(1.02);
-    box-shadow: 0 20px 60px rgba(0, 123, 255, 0.45);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--shadow-lg), 0 0 40px rgba(0, 212, 255, 0.3);
 }
 
 .power-container h2 {
-    color: #17a2b8;
-    font-size: 2.2rem;
-    margin-bottom: 30px;
+    color: var(--info-color);
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
     font-weight: 700;
-    letter-spacing: 1.2px;
+    letter-spacing: 1px;
+}
+
+.power-readings {
+    display: grid;
+    gap: 1rem;
 }
 
 .power-readings p {
-    font-size: 1.6rem;
-    margin: 20px 0;
-    letter-spacing: 0.6px;
-    line-height: 1.5;
+    font-size: 1.2rem;
+    padding: 1rem;
+    background: var(--glass-bg);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--glass-border);
+    transition: all 0.3s ease;
+    margin: 0;
+}
+
+.power-readings p:hover {
+    transform: translateX(5px);
+    border-color: var(--accent-primary);
 }
 
 .power-readings span {
     font-weight: 700;
-    color: #00e0ff;
-    font-size: 1.8rem;
-    transition: color 0.3s ease, text-shadow 0.3s ease;
+    color: var(--accent-primary);
+    font-size: 1.4rem;
+    transition: all 0.3s ease;
+}
+
+.power-readings span#voltage {
+    color: var(--success-color);
+}
+
+.power-readings span#current {
+    color: var(--warning-color);
 }
 
 .power-readings span#power {
-    color: #ffc400;
+    color: var(--info-color);
 }
 
-.power-readings span:hover {
-    color: #1da1f2;
-    text-shadow: 0 0 10px rgba(0, 195, 255, 0.7);
-}
-
-@media (max-width: 600px) {
-    .chart-container,
-    .power-container {
-        padding: 30px 25px;
-        max-width: 95%;
-    }
-
-    .power-container h2 {
-        font-size: 1.7rem;
-    }
-
-    .power-readings p {
-        font-size: 1.3rem;
-    }
-
-    .power-readings span {
-        font-size: 1.4rem;
-    }
-}
-
+/* Enhanced Bill Container */
 .bill-container {
-    background: linear-gradient(135deg, #131313, #252525);
-    color: #ffffff;
-    font-family: "Segoe UI", sans-serif;
-    padding: 40px;
-    border-radius: 16px;
-    max-width: 520px;
-    margin: 50px auto;
-    box-shadow: 0 14px 36px rgba(13, 110, 253, 0.35);
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
+    padding: 2.5rem;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
     text-align: center;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+}
+
+.bill-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--warning-color), var(--accent-primary));
+}
+
+.bill-container:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--shadow-lg), 0 0 40px rgba(255, 170, 0, 0.3);
 }
 
 .bill-container h2 {
-    color: #0dcaf0;
-    margin-bottom: 25px;
-    font-size: 2rem;
-    font-weight: 600;
+    color: var(--warning-color);
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.bill-details {
+    display: grid;
+    gap: 1rem;
 }
 
 .bill-details p {
-    font-size: 1.5rem;
-    margin: 14px 0;
-    color: #dcdcdc;
+    font-size: 1.2rem;
+    padding: 1rem;
+    background: var(--glass-bg);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--glass-border);
+    transition: all 0.3s ease;
+    margin: 0;
+}
+
+.bill-details p:hover {
+    transform: scale(1.02);
+    border-color: var(--warning-color);
 }
 
 .bill-details span {
     font-weight: 800;
-    color: #ffc107;
-    font-size: 1.8rem;
+    color: var(--warning-color);
+    font-size: 1.4rem;
+}
+
+/* Enhanced Glow Button */
+.glow-button {
+    display: block;
+    margin: 1.5rem auto 0;
+    padding: 12px 30px;
+    background: var(--accent-gradient);
+    border: none;
+    border-radius: var(--radius-md);
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: var(--shadow-glow);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.5px;
+}
+
+.glow-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.glow-button:hover::before {
+    left: 100%;
+}
+
+.glow-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.5);
+}
+
+.glow-button.secondary {
+    background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-secondary));
+    border: 2px solid var(--accent-primary);
+    color: var(--accent-primary);
+}
+
+.glow-button.secondary:hover {
+    background: var(--accent-gradient);
+    color: white;
+    border-color: transparent;
+}
+
+/* Enhanced Chart Container */
+.chart-container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
+    padding: 3rem;
+    max-width: 1200px;
+    margin: 4rem auto;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.chart-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent-gradient);
+}
+
+.chart-container:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg), var(--shadow-glow);
+}
+
+.chart-container h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-weight: 700;
+    font-size: 2.2rem;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 1px;
+}
+
+.canvas-wrapper {
+    width: 100%;
+    height: 400px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--bg-secondary);
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--glass-border);
+}
+
+canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+}
+
+/* Control Panel */
+.control-panel {
+    padding: 3rem 0;
+    background: linear-gradient(180deg, transparent 0%, rgba(0, 212, 255, 0.02) 100%);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%,
+    100% {
+        box-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(0, 212, 255, 0.9);
+    }
+}
+
+@keyframes float {
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Bootstrap Grid Enhancements */
+.row.g-4 > * {
+    margin-bottom: 1.5rem;
+}
+
+.h-100 {
+    height: 100% !important;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .power-container,
+    .bill-container {
+        margin-bottom: 2rem;
+    }
+
+    .power-container h2,
+    .bill-container h2 {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-section {
+        height: 40vh;
+    }
+
+    .chart-container,
+    .power-container,
+    .bill-container {
+        padding: 2rem;
+        margin: 2rem auto;
+        max-width: 95%;
+    }
+
+    .sensor-card {
+        padding: 1.5rem;
+    }
+
+    .datetime-container {
+        top: 10px;
+        right: 10px;
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+
+    .power-readings p,
+    .bill-details p {
+        font-size: 1.1rem;
+        padding: 0.8rem;
+    }
+
+    .power-readings span,
+    .bill-details span {
+        font-size: 1.2rem;
+    }
+
+    .power-container h2,
+    .bill-container h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .sensor-dashboard {
+        padding: 2rem 0;
+    }
+
+    .thermometer,
+    .humiditymeter {
+        width: 40px;
+        height: 180px;
+    }
+
+    .header-content h1 {
+        font-size: 2rem;
+    }
+
+    .chart-container h2 {
+        font-size: 1.8rem;
+    }
+
+    .power-container,
+    .bill-container {
+        padding: 1.5rem;
+    }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--accent-primary);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-secondary);
+}
+
+/* Selection Styling */
+::selection {
+    background: rgba(0, 212, 255, 0.3);
+    color: var(--text-primary);
+}
+
+/* Additional Bootstrap Overrides */
+.container {
+    max-width: 1200px;
+}
+
+.py-5 {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+}
+
+.my-5 {
+    margin-top: 3rem !important;
+    margin-bottom: 3rem !important;
+}
+
+.mb-5 {
+    margin-bottom: 3rem !important;
 }
