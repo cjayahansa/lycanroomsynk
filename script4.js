@@ -1,21 +1,19 @@
-// === PARAMETERS ===
-const unitRate = 30; // Rs. per unit (kWh)
-const powerAvgWatts = 250; // average power in watts (replace with live average if needed)
+// === Firebase LIVE BILL + UNIT UPDATE ===
+function updateLiveBillFromFirebase() {
+    const energyRef = firebase.database().ref("EnergyData");
 
-// === CALCULATE ESTIMATED BILL ===
-function updateBillEstimate() {
-    // Estimate monthly energy usage: Power × Time (in hours) / 1000 = kWh
-    // Assume ~6 hours/day usage for now
-    const hoursPerDay = 6;
-    const daysPerMonth = 30;
+    energyRef.on("value", (snapshot) => {
+        const data = snapshot.val();
+        if (data) {
+            const kwh = data.KWh ?? 0;
+            const bill = data.Bill ?? 0;
 
-    const monthlyEnergyKWh = (powerAvgWatts * hoursPerDay * daysPerMonth) / 1000;
-    const estimatedCost = monthlyEnergyKWh * unitRate;
-
-    // Display values
-    document.getElementById("monthlyUnits").textContent = monthlyEnergyKWh.toFixed(1);
-    document.getElementById("estimatedBill").textContent = estimatedCost.toFixed(2);
+            document.getElementById("monthlyUnits").textContent = kwh.toFixed(2);
+            document.getElementById("estimatedBill").textContent = bill.toFixed(2);
+        }
+    });
 }
 
-// Call once on load
-updateBillEstimate();
+// Call it once on load
+updateLiveBillFromFirebase();
+

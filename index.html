@@ -118,6 +118,8 @@
         <script type="module" src="script.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
+         
+
         <!-- Firebase Integration -->
         <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
@@ -172,5 +174,38 @@
                 console.error("Firebase Auth error:", error.message);
             });
         </script>
+
+    <script>
+           const energyRef = firebase.database().ref("EnergyData");
+
+           energyRef.on("value", (snapshot) => {
+           const data = snapshot.val();
+           console.log("EnergyData:", data);
+
+        if (data) {
+            const voltage = data.Voltage ?? 0;
+            const current = data.Current ?? 0;
+            const power = data.Power ?? 0;
+
+
+            console.log("Voltage:", voltage);
+            console.log("Current:", current);
+            console.log("Power:", power);
+
+            document.getElementById("voltage").innerText = voltage.toFixed(1);
+            document.getElementById("current").innerText = current.toFixed(2);
+            document.getElementById("power").innerText = power.toFixed(2);
+        }
+        });
+
+    </script>
+
+
+        <div>
+           <p>Voltage: <span id="voltage">--</span></p>
+           <p>Current: <span id="current">--</span></p>
+           <p>Power: <span id="power">--</span></p>
+         </div>
+
     </body>
 </html>
