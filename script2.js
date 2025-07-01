@@ -1,7 +1,7 @@
 const ctx = document.getElementById("monthlyPowerChart").getContext("2d");
 
-const monthlyPower = [12, 15, 18, 14, 20, 22, 19, 17, 21, 25, 23, 26]; // Replace with real data
-const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const monthlyPower = [90, 78, 56, 45, 89, 120]; // Replace with real data
+const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"];
 
 new Chart(ctx, {
     type: "bar",
