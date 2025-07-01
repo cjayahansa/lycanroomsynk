@@ -1,134 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Smart Room Monitor</title>
-    <link rel="stylesheet" href="styles.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-    />
-  </head>
-  <body class="dark-theme">
-    <header class="header-section">
-      <div class="video-overlay"></div>
-      <video autoplay muted loop class="header-video">
-        <source src="aset\video\2532698-hd_1920_1080_24fps.mp4" type="video/mp4" />
-      </video>
-      <div class="header-content">
-        <h1>Smart Room Condition Audit System</h1>
-        <p class="header-subtitle">Real-time Monitoring</p>
-      </div>
-    </header>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Smart Room Monitor</title>
 
-    <div class="sensor-dashboard">
-      <div class="container">
-        <div class="row g-4">
-          <!-- Temperature Card -->
-          <div class="col-md-4">
-            <div class="sensor-card" style="height: 450px;">
-              <h3>Temperature</h3>
-              <div class="meter-container">
-                <div class="thermometer">
-                  <div class="mercury"></div>
-                  <div class="temperature-label" id="temperature">--°C</div>
+        <!-- CSS -->
+        <link rel="stylesheet" href="styles.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+
+        <!-- Chart.js -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </head>
+
+    <body class="dark-theme">
+        <!-- Header Section -->
+        <header class="header-section">
+            <div class="video-overlay"></div>
+            <video autoplay muted loop class="header-video">
+                <source src="aset/video/2532698-hd_1920_1080_24fps.mp4" type="video/mp4" />
+            </video>
+            <div class="header-content">
+                <h1>Smart Room Condition Audit System</h1>
+                <p class="header-subtitle">Real-time Monitoring</p>
+            </div>
+        </header>
+
+        <section class="sensor-dashboard py-5">
+            <div class="container">
+              <div class="row g-4 justify-content-center">
+                <!-- Temperature Card -->
+                <div class="col-md-4">
+                  <div class="sensor-card">
+                    <h3>Temperature</h3>
+                    <div class="meter-container">
+                      <div class="thermometer">
+                        <div class="mercury" style="height: 60%;"></div>
+                        <div class="temperature-label" id="temperature">--°C</div>
+                      </div>
+                    </div>
+                    <div class="sensor-details">
+                      <p>Current: <span id="temperatureCurrent">--°C</span></p>
+                      <p>
+                        Min: <span id="temperatureMin">--°C</span> | Max:
+                        <span id="temperatureMax">--°C</span>
+                      </p>
+                    </div>
+                    <button class="glow-button" onclick="location.href='index3.html'">Details</button>
+                  </div>
+                </div>
+        
+                <!-- Humidity Card -->
+                <div class="col-md-4">
+                  <div class="sensor-card">
+                    <h3>Humidity</h3>
+                    <div class="meter-container">
+                      <div class="humiditymeter">
+                        <div class="mercury" style="height: 40%;"></div>
+                        <div class="temperature-label" id="humidity">--%</div>
+                      </div>
+                    </div>
+                    <div class="sensor-details">
+                      <p>Current: <span id="humidityCurrent">--%</span></p>
+                      <p>
+                        Min: <span id="humidityMin">--%</span> | Max:
+                        <span id="humidityMax">--%</span>
+                      </p>
+                    </div>
+                    <button class="glow-button" onclick="location.href='12.html'">Details</button>
+                  </div>
                 </div>
               </div>
-              <div class="sensor-details">
-                <p>Current: <span id="temperatureCurrent">--°C</span></p>
-                <p>
-                  Min: <span id="temperatureMin">--°C</span> | Max:
-                  <span id="temperatureMax">--°C</span>
-                </p>
-              </div>
-              <button class="glow-button"
-              onclick="location.href='index3.html'">Details</button>
             </div>
-          </div>
-
-          <!-- Humidity Card -->
-          <div class="col-md-4" >
-            <div class="sensor-card" style="height: 450px;">
-              <h3>Humidity</h3>
-              <div class="meter-container">
-                <div class="humiditymeter">
-                  <div class="mercury"></div>
-                  <div class="temperature-label" id="humidity">--%</div>
+          </section>
+                    <!-- Light Intensity Card -->
                 </div>
-              </div>
-              <div class="sensor-details">
-                <p>Current: <span id="humidityCurrent">--%</span></p>
-                <p>
-                  Min: <span id="humidityMin">--%</span> | Max:
-                  <span id="humidityMax">--%</span>
-                </p>
-              </div>
-              <button class="glow-button"
-              onclick="location.href='12.html'">Details</button>
             </div>
-          </div>
+        </section>
 
-          <!-- Light Intensity Card -->
-          <div class="col-md-4 ">
-            <div class="sensor-card" style="height: 450px;">
-              <h3>Light Intensity</h3>
-              <div class="light-intensity-display">
-                <div class="light-intensity-value" id="lightIntensity">500</div>
-                <div class="light-intensity-unit">lux</div>
-              </div>
-              <div class="light-intensity-bar">
-                <div class="light-intensity-fill"></div>
-              </div>
-
-              <div class="bulb-control">
-                <label
-                  class="switch"
-                  data-bs-toggle="tooltip"
-                  data-bs-placement="top"
-                  title="Switch disabled for users"
-                >
-                  <input
-                    type="checkbox"
-                    id="bulbSwitch"
-                    onclick="event.preventDefault()"
-                  />
-                  <span class="slider round"></span>
-                </label>
-                <span class="bulb-label"
-                  >Bulb: <span id="bulbStatus">OFF</span></span
-                >
-              </div>
-              <div class="voltage-display">
-                <!-- Voltage: <span id="voltageValue">0.0</span>V -->
-              </div>
-              
-                <button class="glow-button mt-auto mb-0"
-                onclick="location.href='13.html'">Details</button>
-         
-              
+        <!-- Monthly Power Consumption Chart -->
+        <section class="chart-container my-5">
+            <h2>Monthly Power Consumption (kWh)</h2>
+            <div class="canvas-wrapper">
+                <canvas id="monthlyPowerChart"></canvas>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
+        </section>
 
-    <div class="control-panel">
-      <div class="container">
-        <div class="button-group">
-          <!-- <button class="glow-button primary">System Status</button> -->
-          <button
-            class="glow-button secondary"
-            onclick="location.href='index2.html'"
-          >
-            About System
-          </button>
-          <!-- <button class="glow-button success">Export Data</button> -->
-        </div>
-      </div>
-    </div>
+        <!-- Real-Time Power Monitoring -->
+        <section class="power-container my-5">
+            <h2>Real-Time Power Monitoring</h2>
+            <div class="power-readings">
+                <p>Voltage: <span id="voltage">--</span> V</p>
+                <p>Current: <span id="current">--</span> A</p>
+                <p><strong>Power:</strong> <span id="power">--</span> W</p>
+            </div>
+        </section>
 
-    <script type="module" src="script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
+        <!-- Monthly Bill Estimate -->
+        <section class="bill-container my-5">
+            <h2>Estimated Monthly Electricity Bill</h2>
+            <div class="bill-details">
+                <p>Monthly Units: <span id="monthlyUnits">--</span> kWh</p>
+                <p>Estimated Bill: Rs. <span id="estimatedBill">--</span></p>
+            </div>
+        </section>
+
+        <!-- Control Panel -->
+        <section class="control-panel py-4">
+            <div class="container text-center">
+                <button class="glow-button secondary" onclick="location.href='index2.html'">About System</button>
+            </div>
+        </section>
+        <script src="script4.js" defer></script>
+        <!-- Scripts -->
+        <script src="script2.js" defer></script>
+        <!-- for power data -->
+        <script src="script3.js" defer></script>
+        <!-- for chart data -->
+        <script type="module" src="script.js"></script>
+        <!-- main sensor logic -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
 </html>

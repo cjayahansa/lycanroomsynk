@@ -9,28 +9,28 @@
     --success-color: #4cd137;
     --warning-color: #fbc531;
     --danger-color: #e84118;
-  }
-  
-  /* Base Styles */
-  body.dark-theme {
+}
+
+/* Base Styles */
+body.dark-theme {
     background-color: var(--bg-primary);
     color: var(--text-primary);
     font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
     margin: 0;
     min-height: 100vh;
-  }
-  
-  /* Header Styles */
-  .header-section {
+}
+
+/* Header Styles */
+.header-section {
     position: relative;
     height: 40vh;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  
-  .video-overlay {
+}
+
+.video-overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -38,65 +38,65 @@
     height: 100%;
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9));
     z-index: 1;
-  }
-  
-  .header-video {
+}
+
+.header-video {
     position: absolute;
     width: 100%;
     height: 100%;
     object-fit: cover;
     z-index: 0;
-  }
-  
-  .header-content {
+}
+
+.header-content {
     position: relative;
     z-index: 2;
     text-align: center;
-  }
-  
-  .header-content h1 {
+}
+
+.header-content h1 {
     font-size: 2.5rem;
     margin-bottom: 1rem;
     text-shadow: 0 0 10px rgba(0, 168, 255, 0.5);
-  }
-  
-  .header-subtitle {
+}
+
+.header-subtitle {
     color: var(--text-secondary);
     font-size: 1.2rem;
-  }
-  
-  /* Sensor Dashboard */
-  .sensor-dashboard {
+}
+
+/* Sensor Dashboard */
+.sensor-dashboard {
     padding: 2rem 0;
-  }
-  
-  .sensor-card {
+}
+
+.sensor-card {
     background: var(--card-bg);
     border-radius: 15px;
     padding: 1.5rem;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease;
-  }
-  
-  .sensor-card:hover {
+}
+
+.sensor-card:hover {
     transform: translateY(-5px);
-  }
-  
-  .sensor-card h3 {
+}
+
+.sensor-card h3 {
     color: var(--accent-primary);
     margin-bottom: 1.5rem;
     text-align: center;
-  }
-  
-  /* Meters */
-  .meter-container {
+}
+
+/* Meters */
+.meter-container {
     display: flex;
     justify-content: center;
     margin: 1rem 0;
-  }
-  
-  .thermometer,
-  .humiditymeter {
+}
+
+.thermometer,
+.humiditymeter {
     position: relative;
     width: 40px;
     height: 200px;
@@ -104,9 +104,9 @@
     border-radius: 20px;
     overflow: hidden;
     box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
-  }
-  
-  .mercury {
+}
+
+.mercury {
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -114,211 +114,198 @@
     background: linear-gradient(to top, var(--accent-primary), var(--accent-secondary));
     transition: height 0.5s ease, background 0.3s ease;
     box-shadow: 0 0 10px var(--accent-primary);
-  }
-  
-  .temperature-label {
+}
+
+.temperature-label {
     position: absolute;
     bottom: -30px;
     width: 100%;
     text-align: center;
     color: var(--text-primary);
     font-weight: bold;
-  }
-  
-  /* Sensor Details */
-  .sensor-details {
+}
+
+/* Sensor Details */
+.sensor-details {
     margin-top: 1rem;
     text-align: center;
     font-size: 0.9rem;
     color: var(--text-secondary);
-  }
-  
-  .sensor-details p {
+}
+
+.sensor-details p {
     margin: 0.5rem 0;
-  }
-  
-  .sensor-details span {
+}
+
+.sensor-details span {
     color: var(--accent-primary);
     font-weight: bold;
-  }
-  
-  /* Light Intensity Display */
-  .light-intensity-display {
-    display: flex;
-    justify-content: center;
-    align-items: baseline;
-    margin-bottom: 1rem;
-  }
-  
-  .light-intensity-value {
-    font-size: 3rem;
+}
+.glow-button {
+    display: block;
+    margin: 1rem auto 0;
+    padding: 0.5rem 1.5rem;
+    background: var(--accent-primary);
+    border: none;
+    border-radius: 10px;
+    color: #fff;
     font-weight: bold;
-    color: var(--accent-primary);
-  }
-  
-  .light-intensity-unit {
-    font-size: 1.5rem;
-    color: var(--text-secondary);
-    margin-left: 0.5rem;
-  }
-  
-  .light-intensity-bar {
-    height: 20px;
-    background-color: var(--bg-secondary);
+    cursor: pointer;
+    box-shadow: 0 0 10px var(--accent-primary);
+    transition: 0.3s ease;
+}
+
+.glow-button:hover {
+    background: var(--accent-secondary);
+    box-shadow: 0 0 20px var(--accent-secondary);
+}
+
+/* Light Intensity Display */
+
+/* dashbord */
+/* Container for chart */
+.chart-container {
+    background-color: #121212; /* Slightly lighter black for less harshness */
+    color: #e0e0e0; /* Softer white */
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    padding: 30px 40px;
+    max-width: 1000px;
+    margin: 40px auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(13, 110, 253, 0.3);
+    transition: box-shadow 0.3s ease;
+}
+
+.chart-container:hover {
+    box-shadow: 0 12px 36px rgba(13, 110, 253, 0.6);
+}
+
+.chart-container h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 700;
+    font-size: 2rem;
+    letter-spacing: 1px;
+    color: #0d6efd;
+}
+
+/* Canvas wrapper - controls size */
+.canvas-wrapper {
+    width: 100%;
+    height: 500px; /* You can adjust this */
     border-radius: 10px;
     overflow: hidden;
-    margin-bottom: 1rem;
-  }
-  
-  .light-intensity-fill {
-    height: 100%;
-    width: 50%;
-    background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
-    transition: width 0.5s ease;
-  }
-  
-  /* Bulb Control */
-  .bulb-control {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1rem;
-  }
-  
-  .switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-    margin-right: 10px;
-  }
-  
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-  
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: var(--bg-secondary);
-    transition: .4s;
-  }
-  
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: var(--text-primary);
-    transition: .4s;
-  }
-  
-  input:checked + .slider {
-    background-color: var(--accent-primary);
-  }
-  
-  input:checked + .slider:before {
-    transform: translateX(26px);
-  }
-  
-  .slider.round {
-    border-radius: 34px;
-  }
-  
-  .slider.round:before {
-    border-radius: 50%;
-  }
-  
-  .bulb-label {
-    color: var(--text-secondary);
-  }
-  
-  /* Voltage Display */
-  .voltage-display {
-    text-align: center;
-    margin-bottom: 1rem;
-    font-size: 1.1rem;
-    color: var(--text-secondary);
-  }
-  
-  #voltageValue {
-    color: var(--accent-primary);
-    font-weight: bold;
-  }
-  
-  /* Buttons */
-  .button-group {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin: 2rem 0;
-    flex-wrap: wrap;
-  }
-  
-  .glow-button {
-    padding: 0.8rem 1.5rem;
-    border: none;
-    border-radius: 8px;
-    background: var(--accent-primary);
-    color: white;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-  
-  .glow-button:hover {
-    background: var(--accent-secondary);
-    box-shadow: 0 0 15px var(--accent-primary);
-    transform: scale(1.05);
-  }
-  
-  .glow-button.secondary {
-    background: var(--bg-secondary);
-  }
-  
-  .glow-button.success {
-    background: var(--success-color);
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .header-content h1 {
-      font-size: 1.8rem;
-    }
-  
-    .sensor-card {
-      margin-bottom: 1rem;
-    }
-  
-    .button-group {
-      flex-direction: column;
-    }
-  
-    .glow-button {
-      width: 100%;
-    }
-  }
-  
-  .alert {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1000;
-    min-width: 300px;
-    text-align: center;
-  }
+    background-color: #1e1e1e; /* subtle background for chart */
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.05);
+}
 
-  
-  
-  
+/* Force canvas to fill the wrapper */
+canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block; /* remove inline block space */
+}
+
+/* Power container */
+.power-container {
+    background: linear-gradient(135deg, #0f0f0f, #1c1c1c);
+    color: #f0f0f0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    padding: 50px 60px;
+    border-radius: 20px;
+    box-shadow: 0 16px 50px rgba(0, 123, 255, 0.25);
+    text-align: center;
+    max-width: 520px;
+    margin: 70px auto;
+    transition: all 0.4s ease-in-out;
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.power-container:hover {
+    transform: scale(1.02);
+    box-shadow: 0 20px 60px rgba(0, 123, 255, 0.45);
+}
+
+.power-container h2 {
+    color: #17a2b8;
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+}
+
+.power-readings p {
+    font-size: 1.6rem;
+    margin: 20px 0;
+    letter-spacing: 0.6px;
+    line-height: 1.5;
+}
+
+.power-readings span {
+    font-weight: 700;
+    color: #00e0ff;
+    font-size: 1.8rem;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.power-readings span#power {
+    color: #ffc400;
+}
+
+.power-readings span:hover {
+    color: #1da1f2;
+    text-shadow: 0 0 10px rgba(0, 195, 255, 0.7);
+}
+
+@media (max-width: 600px) {
+    .chart-container,
+    .power-container {
+        padding: 30px 25px;
+        max-width: 95%;
+    }
+
+    .power-container h2 {
+        font-size: 1.7rem;
+    }
+
+    .power-readings p {
+        font-size: 1.3rem;
+    }
+
+    .power-readings span {
+        font-size: 1.4rem;
+    }
+}
+
+.bill-container {
+    background: linear-gradient(135deg, #131313, #252525);
+    color: #ffffff;
+    font-family: "Segoe UI", sans-serif;
+    padding: 40px;
+    border-radius: 16px;
+    max-width: 520px;
+    margin: 50px auto;
+    box-shadow: 0 14px 36px rgba(13, 110, 253, 0.35);
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.bill-container h2 {
+    color: #0dcaf0;
+    margin-bottom: 25px;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.bill-details p {
+    font-size: 1.5rem;
+    margin: 14px 0;
+    color: #dcdcdc;
+}
+
+.bill-details span {
+    font-weight: 800;
+    color: #ffc107;
+    font-size: 1.8rem;
+}
