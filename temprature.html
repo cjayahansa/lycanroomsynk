@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Temperature Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body class="dark-theme">
+  <div class="header-section">
+    <div class="header-content">
+      <h1>Temperature Dashboard</h1>
+    </div>
+  </div>
+
+  <div class="sensor-dashboard">
+    <div class="sensor-card">
+      <h3>Temperature</h3>
+      <div class="meter-container">
+        <div class="thermometer">
+          <div class="mercury" id="temperature-meter"></div>
+        </div>
+      </div>
+      <div class="sensor-details">
+        <p>Current: <span id="temperature-current" class="live-update">--°C</span></p>
+        <p>Min: <span id="temperature-min">--°C</span></p>
+        <p>Max: <span id="temperature-max">--°C</span></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDo3eZIkYaMOoT1cVp5Il6CHsxIIb5xQ_0",
+      authDomain: "flutterfirebase-dc911.firebaseapp.com",
+      databaseURL: "https://flutterfirebase-dc911-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "flutterfirebase-dc911",
+      storageBucket: "flutterfirebase-dc911.appspot.com"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+
+    let minTemp = null;
+    let maxTemp = null;
+
+    firebase.auth().signInWithEmailAndPassword("riththikkansairam@gmail.com", "roomsync")
+      .then(() => {
+        const tempRef = firebase.database().ref('EnergyData/temp');
+
+        tempRef.on('value', (snapshot) => {
+          const temp = snapshot.val();
+          if (temp !== null) {
+            document.getElementById('temperature-current').innerText = temp + '°C';
+            const meterHeight = Math.min((temp / 100) * 100, 100);
+            document.getElementById('temperature-meter').style.height = meterHeight + '%';
+
+            // Handle min/max
+            if (minTemp === null || temp < minTemp) {
+              minTemp = temp;
+              document.getElementById('temperature-min').innerText = minTemp + '°C';
+            }
+            if (maxTemp === null || temp > maxTemp) {
+              maxTemp = temp;
+              document.getElementById('temperature-max').innerText = maxTemp + '°C';
+            }
+          }
+        });
+      })
+      .catch((error) => {
+        console.error("Auth error:", error.message);
+      });
+  </script>
+
+  <button id="backButton" class="glow-button" onclick="location.href='index.html'">Back to Dashboard</button>
+</body>
+</html>

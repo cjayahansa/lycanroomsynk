@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Humidity Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="dark-theme">
+  <div class="header-section">
+    <div class="header-content">
+      <h1>Humidity Dashboard</h1>
+    </div>
+  </div>
+
+  <div class="sensor-dashboard">
+    <div class="sensor-card">
+      <h3>Humidity</h3>
+      <div class="meter-container">
+        <div class="humiditymeter">
+          <div class="mercury" id="humidity-meter"></div>
+        </div>
+      </div>
+      <div class="sensor-details">
+        <p>Current: <span id="humidity-current" class="live-update">--%</span></p>
+        <p>Min: <span id="humidity-min">--%</span></p>
+        <p>Max: <span id="humidity-max">--%</span></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDo3eZIkYaMOoT1cVp5Il6CHsxIIb5xQ_0",
+      authDomain: "flutterfirebase-dc911.firebaseapp.com",
+      databaseURL: "https://flutterfirebase-dc911-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "flutterfirebase-dc911",
+      storageBucket: "flutterfirebase-dc911.appspot.com"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+
+    // Variables to store min and max locally
+    let minHumidity = null;
+    let maxHumidity = null;
+
+    firebase.auth().signInWithEmailAndPassword("riththikkansairam@gmail.com", "roomsync")
+      .then(() => {
+        const humidityRef = firebase.database().ref('EnergyData/humidity');
+
+        humidityRef.on('value', (snapshot) => {
+          const currentHumidity = snapshot.val();
+          if (currentHumidity !== null) {
+            document.getElementById('humidity-current').innerText = currentHumidity + '%';
+            document.getElementById('humidity-meter').style.height = currentHumidity + '%';
+
+            // Update min
+            if (minHumidity === null || currentHumidity < minHumidity) {
+              minHumidity = currentHumidity;
+              document.getElementById('humidity-min').innerText = minHumidity + '%';
+            }
+
+            // Update max
+            if (maxHumidity === null || currentHumidity > maxHumidity) {
+              maxHumidity = currentHumidity;
+              document.getElementById('humidity-max').innerText = maxHumidity + '%';
+            }
+          }
+        });
+      })
+      .catch(error => {
+        console.error("Auth error:", error.message);
+      });
+  </script>
+
+  <button id="backButton" class="glow-button" onclick="location.href='index.html'">Back to Dashboard</button>
+</body>
+</html>
