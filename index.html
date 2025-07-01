@@ -25,6 +25,29 @@
                 <p class="header-subtitle">Real-time Monitoring</p>
             </div>
         </header>
+        <div class="container my-5">
+            <div class="row">
+                <div class="col-md-6">
+                    <section class="power-container">
+                        <h2>Real-Time Power Monitoring</h2>
+                        <div class="power-readings">
+                            <p>Voltage: <span id="voltage">--</span> V</p>
+                            <p>Current: <span id="current">--</span> A</p>
+                            <p><strong>Power:</strong> <span id="power">--</span> W</p>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-md-6">
+                    <section class="bill-container">
+                        <h2>Estimated Monthly Electricity Bill</h2>
+                        <div class="bill-details">
+                            <p>Monthly Units: <span id="monthlyUnits">--</span> kWh</p>
+                            <p>Estimated Bill: Rs. <span id="estimatedBill">--</span></p>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
 
         <section class="sensor-dashboard py-5">
             <div class="container">
@@ -79,23 +102,6 @@
             <h2>Monthly Power Consumption (kWh)</h2>
             <div class="canvas-wrapper">
                 <canvas id="monthlyPowerChart"></canvas>
-            </div>
-        </section>
-
-        <section class="power-container my-5">
-            <h2>Real-Time Power Monitoring</h2>
-            <div class="power-readings">
-                <p>Voltage: <span id="voltage">--</span> V</p>
-                <p>Current: <span id="current">--</span> A</p>
-                <p><strong>Power:</strong> <span id="power">--</span> W</p>
-            </div>
-        </section>
-
-        <section class="bill-container my-5">
-            <h2>Estimated Monthly Electricity Bill</h2>
-            <div class="bill-details">
-                <p>Monthly Units: <span id="monthlyUnits">--</span> kWh</p>
-                <p>Estimated Bill: Rs. <span id="estimatedBill">--</span></p>
             </div>
         </section>
 
